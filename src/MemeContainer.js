@@ -5,10 +5,19 @@ import NavBar from "./NavBar";
 
 function MemeContainer() {
     const [memes, setMemes] = useState([]);
+    const [allImages, setAllImages] = useState([]);
+    const [allCreatedMemes, setAllCreatedMemes] = useState([]);
+
+
+    useEffect(() => {
+        fetch('https://ronreiter-meme-generator.p.rapidapi.com/images?rapidapi-key=d45c4bf44bmsh5794f268d449d19p18f503jsn618a9ca69a76')
+        .then(res => res.json())
+        .then(data => setAllImages(data))
+    },[])
 
     function handleNewMemeForm(newMeme){
-        const updatedMemes = [...memes, newMeme]
-        setMemes(updatedMemes)
+        const updatedNewMemes = [...allCreatedMemes, newMeme]
+        setAllCreatedMemes(updatedNewMemes)
     }
 
 
@@ -21,8 +30,8 @@ function MemeContainer() {
     return (
         <div>
             <NavBar />
-            <MemeForm handleNewMemeForm={handleNewMemeForm}/>
-            <MemeList memes={memes}/>
+            <MemeForm handleNewMemeForm={handleNewMemeForm} allImages={allImages}/>
+            <MemeList memes={memes} allCreatedMemes={allCreatedMemes}/>
         </div>
     )
 }
