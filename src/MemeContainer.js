@@ -31,7 +31,7 @@ function MemeContainer() {
         <div>
             <NavBar />
             <MemeForm handleNewMemeForm={handleNewMemeForm} allImages={allImages}/>
-            <MemeList memes={memes} allCreatedMemes={allCreatedMemes}/>
+            <MemeList setAllCreatedMemes={setAllCreatedMemes} memes={memes} allCreatedMemes={allCreatedMemes}/>
         </div>
     )
 }

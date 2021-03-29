@@ -14,7 +14,7 @@ function MemeForm({handleNewMemeForm, allImages}) {
     function handleSubmit(e){
         e.preventDefault();
         const data = {
-            meme: image,
+            image: image,
             top: topText, 
             bottom: bottomText,
         };

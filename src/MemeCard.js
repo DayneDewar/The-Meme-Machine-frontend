@@ -1,13 +1,13 @@
 import React from "react";
 
-function MemeCard({ name, image, top, bottom, likes, id }) {
+function MemeCard({ name, image, top, bottom, likes, id, handleNewCreatedMeme }) {
 
     function handlePost() {
         const data = {
-            name: "test",
+            name: "",
             image: image,
-            top: "test top 1",
-            bottom: "test bottom 1",
+            top: "",
+            bottom: "",
             likes: 0
         }
         fetch('http://localhost:3000/memes', {
@@ -18,7 +18,7 @@ function MemeCard({ name, image, top, bottom, likes, id }) {
               body: JSON.stringify(data)
             })
             .then(res => res.json())
-            .then(newMeme => console.log(newMeme))
+            .then(newMeme => handleNewCreatedMeme(newMeme))
         
     }
     return (
