@@ -6,6 +6,12 @@ import NavBar from "./NavBar";
 function MemeContainer() {
     const [memes, setMemes] = useState([]);
 
+    function handleNewMemeForm(newMeme){
+        const updatedMemes = [...memes, newMeme]
+        setMemes(updatedMemes)
+    }
+
+
     useEffect(() => {
         fetch('http://localhost:3000/memes')
         .then(response => response.json())
@@ -15,7 +21,7 @@ function MemeContainer() {
     return (
         <div>
             <NavBar />
-            <MemeForm />
+            <MemeForm handleNewMemeForm={handleNewMemeForm}/>
             <MemeList memes={memes}/>
         </div>
     )
