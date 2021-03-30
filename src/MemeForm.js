@@ -5,7 +5,8 @@ function MemeForm({handleNewMemeForm, allImages}) {
     const [image, setImage] = useState("")
     const [topText, setTopText] = useState("")
     const [bottomText, setBottomText] = useState("")
-    const [apiImageUrl, setApiImageUrl] = useState("")
+    const [name, setName] = useState("")
+
 
     const dropdown = allImages.map((eachImage) => {
         return (<option key={eachImage} value={eachImage}>{eachImage}</option>)
@@ -15,6 +16,7 @@ function MemeForm({handleNewMemeForm, allImages}) {
         e.preventDefault();
         const data = {
             user_id: 1,
+            name: name,
             image: image,
             top: topText, 
             bottom: bottomText,
@@ -29,16 +31,20 @@ function MemeForm({handleNewMemeForm, allImages}) {
   ,body: JSON.stringify(data)
     })
     .then(res => res.json())
-    // .then(data => console.log(data) )
     .then((newMemeImage) => {
-        // console.log(outside)
-        // setApiImageUrl(outside)
-        // handleNewMemeForm(outside)
+        handleNewMemeForm(newMemeImage)
+        setName("")
+        setTopText("")
+        setBottomText("")
 })
 }
 
     function handleImageOnChange(e){
         setImage(e.target.value)
+    }
+
+    function handleNameOnChange(e){
+        setName(e.target.value)
     }
 
     function handleTopOnChange(e){
@@ -51,13 +57,12 @@ function MemeForm({handleNewMemeForm, allImages}) {
 
     return (
         <div>
-            <h2>New Meme</h2>
-            <img src={apiImageUrl} alt="meme"/>
+            <h2>Create A New Meme</h2>
         <form onSubmit={handleSubmit}>
         <select type="text" name="image"  onChange={handleImageOnChange} value={image} placeholder="Image URL" >
             {dropdown}
         </select>
-        
+        <input  type="text" name="name"  onChange={handleNameOnChange} value={name} placeholder="Name Field" />
         <input  type="text" name="top"  onChange={handleTopOnChange} value={topText} placeholder="Top Input Field" />
         <input  type="text" name="Bottom"  onChange={handleBottomOnChange} value={bottomText} placeholder="Bottom Input Field" />
         <button type="submit">Generate Meme</button>
