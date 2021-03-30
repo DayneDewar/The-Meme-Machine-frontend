@@ -14,9 +14,11 @@ function MemeForm({handleNewMemeForm, allImages}) {
     function handleSubmit(e){
         e.preventDefault();
         const data = {
+            user_id: 1,
             image: image,
             top: topText, 
             bottom: bottomText,
+            likes: 0
         };
 
     fetch('http://localhost:3000/generate', {
