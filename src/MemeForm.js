@@ -19,20 +19,19 @@ function MemeForm({handleNewMemeForm, allImages}) {
             bottom: bottomText,
         };
 
-    fetch(`https://ronreiter-meme-generator.p.rapidapi.com/meme?meme=${image}&bottom=${bottomText}&top=${topText}&font_size=50&font=Impact`, {
-    method: 'GET',
+    fetch('http://localhost:3000/generate', {
+    method: 'POST',
     headers: {
-    "x-rapidapi-key": "d45c4bf44bmsh5794f268d449d19p18f503jsn618a9ca69a76",
-	"x-rapidapi-host": "ronreiter-meme-generator.p.rapidapi.com"
+    "Content-Type": "application/json",
   }
+  ,body: JSON.stringify(data)
     })
-    .then(res => res.blob())
+    .then(res => res.json())
     // .then(data => console.log(data) )
     .then((newMemeImage) => {
-        const outside = URL.createObjectURL(newMemeImage)
-        console.log(outside)
-        setApiImageUrl(outside)
-        handleNewMemeForm(outside)
+        // console.log(outside)
+        // setApiImageUrl(outside)
+        // handleNewMemeForm(outside)
 })
 }
 
