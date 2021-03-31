@@ -1,17 +1,11 @@
 import React from "react";
 import MemeCard from "./MemeCard";
 
-function MemeList({ memes, setMemes }) {
-
-    // function handleNewCreatedMeme(newMeme){
-    //     const updatedMemes = [...allCreatedMemes, newMeme];
-    //     setAllCreatedMemes(updatedMemes)
-    // }
-
+function MemeList({ memes, setMemes, handleNewFavorite}) {
     
     const memeCards = memes.map((meme) => {
         return  (<MemeCard
-        // handleNewCreatedMeme={handleNewCreatedMeme}
+        handleNewFavorite={handleNewFavorite}
         setMemes={setMemes}
         key={meme.id}
         name={meme.name}

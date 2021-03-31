@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 
-function MemeCard({ name, image, top, bottom, likes, id, handleNewCreatedMeme, setMemes }) {
+function MemeCard({ name, image, likes, id, handleNewFavorite, setMemes }) {
     const [newLikes, setNewLikes] = useState(likes)
-    
-    function handlePost() {
+
+    function handleFavorite(e) {
+        e.preventDefault();
+        
+
         const data = {
             user_id: 1,
             meme_id: id
@@ -16,7 +19,7 @@ function MemeCard({ name, image, top, bottom, likes, id, handleNewCreatedMeme, s
               body: JSON.stringify(data)
             })
             .then(res => res.json())
-            .then(newFavorite => console.log(newFavorite))
+            .then(newFavorite => handleNewFavorite(newFavorite))
     }
 
     function handleLikes(e) {
@@ -34,7 +37,8 @@ function MemeCard({ name, image, top, bottom, likes, id, handleNewCreatedMeme, s
     function handleDelete(e) {
         e.preventDefault();
 
-        fetch(`http://localhost:3000/memes/${id}`, {
+            // alert("Please Remove From Your Favorites Before Deleting This Meme")
+            fetch(`http://localhost:3000/memes/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -47,11 +51,9 @@ function MemeCard({ name, image, top, bottom, likes, id, handleNewCreatedMeme, s
 
     return (
         <div>
-            {/* <h3>{name}</h3> */}
+            <h3>{name}</h3>
             <img src={"http://localhost:3000" + image} alt={name} />
-            {/* <p>{top}</p>
-            <p>{bottom}</p> */}
-            <button onClick={handlePost}>Favorite</button>
+            <button onClick={handleFavorite}>Favorite</button>
             <button onClick={handleLikes}>Likes: {newLikes}</button>
             <button onClick={handleDelete}>🗑</button>
         </div>
