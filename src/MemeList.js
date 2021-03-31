@@ -16,7 +16,7 @@ function MemeList({ memes, setMemes, handleNewFavorite}) {
         )
     })
     return (
-        <div>
+        <div className="cards">
            {memeCards}
         </div>
     )

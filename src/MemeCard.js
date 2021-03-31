@@ -50,12 +50,12 @@ function MemeCard({ name, image, likes, id, handleNewFavorite, setMemes }) {
     }
 
     return (
-        <div>
+        <div className="card">
             <h3>{name}</h3>
             <img src={"http://localhost:3000" + image} alt={name} />
-            <button onClick={handleFavorite}>Favorite</button>
-            <button onClick={handleLikes}>Likes: {newLikes}</button>
-            <button onClick={handleDelete}>🗑</button>
+            <button className="primary" onClick={handleFavorite}>Favorite</button>
+            <button className="primary" onClick={handleLikes}>Likes: {newLikes}</button>
+            <button className="primary" onClick={handleDelete}>🔥</button>
         </div>
     )
 }

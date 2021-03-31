@@ -5,6 +5,7 @@ function NavBar() {
     return (
         <div>
             <NavLink to="/">Home</NavLink>
+            <br></br>
             <NavLink to="/favorites">Favorite Memes</NavLink>
         </div>
     )

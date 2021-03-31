@@ -13,9 +13,9 @@ function FavoriteMeme({ favorites, setFavorites }) {
         )
     })
     return (
-        <div>
+        <div >
             <h2>Favorite Memes</h2>
-            {favoriteCards}
+            <div className="cards">{favoriteCards}</div>
         </div>
     )
 }

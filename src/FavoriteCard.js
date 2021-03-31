@@ -16,9 +16,9 @@ function FavoriteCard({ id, image, setFavorites }){
         ))
     }
 
-    return <div>
+    return <div className="card">
         <img src={"http://localhost:3000" + image} alt={id} />
-        <button onClick={handleFavoriteDelete}>Remove from Favorites</button>
+        <button className="primary" onClick={handleFavoriteDelete}>Remove from Favorites</button>
     </div>
 }
 
