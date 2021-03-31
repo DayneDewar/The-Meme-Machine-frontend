@@ -2,10 +2,19 @@ import React, { useEffect, useState } from "react";
 import MemeForm from "./MemeForm";
 import MemeList from "./MemeList";
 import NavBar from "./NavBar";
+import FavoriteMeme from "./FavoriteMeme"
 
 function MemeContainer() {
     const [memes, setMemes] = useState([]);
     const [allImages, setAllImages] = useState([]);
+    const [favorites, setFavorites] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3000/favorites')
+        .then(res => res.json())
+        .then(data => setFavorites(data))
+    }, []) 
+    
 
 
     useEffect(() => {
@@ -30,6 +39,7 @@ function MemeContainer() {
             <NavBar />
             <MemeForm handleNewMemeForm={handleNewMemeForm} allImages={allImages}/>
             <MemeList memes={memes} setMemes={setMemes}/>
+            <FavoriteMeme setFavorites={setFavorites} favorites={favorites}/>
         </div>
     )
 }

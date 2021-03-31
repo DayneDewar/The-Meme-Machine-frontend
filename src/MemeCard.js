@@ -5,13 +5,10 @@ function MemeCard({ name, image, top, bottom, likes, id, handleNewCreatedMeme, s
     
     function handlePost() {
         const data = {
-            name: "",
-            image: image,
-            top: "",
-            bottom: "",
-            likes: 0
+            user_id: 1,
+            meme_id: id
         }
-        fetch('http://localhost:3000/memes', {
+        fetch('http://localhost:3000/favorites', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -19,7 +16,7 @@ function MemeCard({ name, image, top, bottom, likes, id, handleNewCreatedMeme, s
               body: JSON.stringify(data)
             })
             .then(res => res.json())
-            .then(newMeme => handleNewCreatedMeme(newMeme))
+            .then(newFavorite => console.log(newFavorite))
     }
 
     function handleLikes(e) {
