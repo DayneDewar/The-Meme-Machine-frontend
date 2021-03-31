@@ -3,7 +3,7 @@ function Header() {
     return (
         <header>
         <h1>The Meme Machine
-            <span className="logo">🐓</span>
+            <span className="logo">🐓 🪨</span>
         </h1>
         </header>
     )
