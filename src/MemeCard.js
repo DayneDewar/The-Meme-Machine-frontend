@@ -37,7 +37,7 @@ function MemeCard({ name, image, likes, id, handleNewFavorite, setMemes }) {
     function handleDelete(e) {
         e.preventDefault();
 
-            // alert("Please Remove From Your Favorites Before Deleting This Meme")
+            alert("Please Remove From Your Favorites Before Deleting This Meme")
             fetch(`http://localhost:3000/memes/${id}`, {
             method: "DELETE",
             headers: {
