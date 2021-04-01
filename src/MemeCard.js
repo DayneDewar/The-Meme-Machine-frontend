@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function MemeCard({ name, image, likes, id, handleNewFavorite, setMemes }) {
+function MemeCard({ name, image, likes, id, handleNewFavorite, setMemes, currentId }) {
     const [newLikes, setNewLikes] = useState(likes)
 
     function handleFavorite(e) {
@@ -8,10 +8,10 @@ function MemeCard({ name, image, likes, id, handleNewFavorite, setMemes }) {
         
 
         const data = {
-            user_id: 1,
+            user_id: currentId,
             meme_id: id
         }
-        fetch('http://localhost:3000/favorites', {
+        fetch('http://localhost:3001/favorites', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ function MemeCard({ name, image, likes, id, handleNewFavorite, setMemes }) {
     }
 
     function handleLikes(e) {
-        fetch(`http://localhost:3000/memes/${id}`, {
+        fetch(`http://localhost:3001/memes/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
@@ -38,7 +38,7 @@ function MemeCard({ name, image, likes, id, handleNewFavorite, setMemes }) {
         e.preventDefault();
 
             alert("Please Remove From Your Favorites Before Deleting This Meme")
-            fetch(`http://localhost:3000/memes/${id}`, {
+            fetch(`http://localhost:3001/memes/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -52,7 +52,7 @@ function MemeCard({ name, image, likes, id, handleNewFavorite, setMemes }) {
     return (
         <div className="card">
             <h3>{name}</h3>
-            <img src={"http://localhost:3000" + image} alt={name} />
+            <img src={"http://localhost:3001" + image} alt={name} />
             <button className="primary" onClick={handleFavorite}>Favorite</button>
             <button className="primary" onClick={handleLikes}>Likes: {newLikes}</button>
             <button className="primary" onClick={handleDelete}>🔥</button>

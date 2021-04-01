@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function MemeForm({handleNewMemeForm, allImages}) {
+function MemeForm({handleNewMemeForm, allImages, currentId}) {
 
     const [image, setImage] = useState("")
     const [topText, setTopText] = useState("")
@@ -15,7 +15,7 @@ function MemeForm({handleNewMemeForm, allImages}) {
     function handleSubmit(e){
         e.preventDefault();
         const data = {
-            user_id: 1,
+            user_id: currentId,
             name: name,
             image: image,
             top: topText, 
@@ -23,7 +23,7 @@ function MemeForm({handleNewMemeForm, allImages}) {
             likes: 0
         };
 
-    fetch('http://localhost:3000/generate', {
+    fetch('http://localhost:3001/generate', {
     method: 'POST',
     headers: {
     "Content-Type": "application/json",

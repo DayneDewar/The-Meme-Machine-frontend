@@ -1,7 +1,8 @@
-import React from 'react';
+import React,{ useEffect } from 'react';
 import FavoriteCard from "./FavoriteCard";
 
-function FavoriteMeme({ favorites, setFavorites }) {
+function FavoriteMeme({ favorites, setFavorites, callFavorites }) {
+    
     const favoriteCards = favorites.map((favorite) => {
         return (
             <FavoriteCard 

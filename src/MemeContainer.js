@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import MemeForm from "./MemeForm";
 import MemeList from "./MemeList";
 
-function MemeContainer({ handleNewFavorite }) {
+function MemeContainer({ handleNewFavorite, currentId }) {
     const [memes, setMemes] = useState([]);
     const [allImages, setAllImages] = useState([]);
 
@@ -18,15 +18,15 @@ function MemeContainer({ handleNewFavorite }) {
     }
 
     useEffect(() => {
-        fetch('http://localhost:3000/memes')
+        fetch('http://localhost:3001/memes')
         .then(response => response.json())
         .then(data => setMemes(data))
     },[])
 
     return (
         <div>
-            <MemeForm handleNewMemeForm={handleNewMemeForm} allImages={allImages}/>
-            <MemeList memes={memes} setMemes={setMemes} handleNewFavorite={handleNewFavorite}/>
+            <MemeForm handleNewMemeForm={handleNewMemeForm} allImages={allImages} currentId={currentId}/>
+            <MemeList memes={memes} setMemes={setMemes} handleNewFavorite={handleNewFavorite} currentId={currentId}/>
         </div>
     )
 }
